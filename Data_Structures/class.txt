@@ -1,0 +1,37 @@
+What is a class?
+
+A blueprint for creating objects with pre-defined properties and methods.
+It's like molding for car parts.
+
+example:
+
+class Node {
+  constructor(first, last) {
+    this.first = first
+    this.last = last
+  }
+}
+
+To create objects from this blue print:
+
+const names = new Node('eralp', 'kor')
+
+static method is used for every instance in a class.
+For example send an email to everyone
+
+class Students {
+  constructor(first, last) {
+    this.first = first
+    this.last = last
+  }
+
+  fullName() {
+    return `Your name is ${this.name}, ${this.last}.`
+  }
+
+  static enrollStudents(...studennts) {
+    // send email
+  }
+}
+
+Students.enrollStudents()
