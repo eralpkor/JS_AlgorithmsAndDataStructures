@@ -1,0 +1,22 @@
+A linked list is a linear data structure, in which the elements are not stored at contiguous memory locations. The elements in a linked list are linked using pointers.
+In simple words, a linked list consists of nodes where each node contains a data field and a reference(link) to the next node in the list.
+
+HEAD
+DATA | next -> DATA next -> DATA next -> null
+Node -> Node -> null
+HEAD ------------------------------ TAIL
+
+Bunch a nodes pointing to next one
+
+Comparison with Arrays:
+
+    Lists
+  * Do not have indexes!
+  * Connected via nodes with a next pointer
+  * Random access is not allowed (we have to start from beginning,
+  we cannot just access to 10th item, like an elevator.) But everything don't have to be Indexed.
+
+    Arrays
+  * Indexed in order!
+  * Insertion and deletion can be expensive
+  * Can quickly be accessed at a specific index 
