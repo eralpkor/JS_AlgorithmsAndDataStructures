@@ -128,21 +128,90 @@ class SinglyLinkedList {
     return false;
   }
   // Insert, adding a node to the linked list at specific position
+  // function takes two params index and value
+  insert(index, val) {
+    // If index is less than zero or greater than the length, return false;
+    if (index < 0 || index > this.length) return false;
+    // If the index is the same as the length, push a new node to the end of the list
+    if (index === this.length) return !!this.push(val); // return boolean value
+    // If the index is 0, unshift a new node to the start of the list
+    if (index === 0) return !!this.unshift(val); // return boolean value
+    // Setup the new node
+    let newNode = new Node(val);
+    // Otherwise, using the get method, access the node at the index -1
+    // Get the node right before insertion index
+    let current = this.get(index - 1);
+    // Temporarily hold the next node
+    let nextNode = current.next;
+    // Set the next property on that node to be the new node
+    current.next = newNode;
+    // Set the next property on the new node to be the previous next
+    newNode.next = nextNode;
+    // Increment the length
+    this.length++
+    return true;
+  }
+  // Remove a node from the Linked List at a specific position
+  remove(index) {
+    // IF the index is less than zero or greater than the length, return undefined
+    if (index < 0 || index > this.length) return undefined;
+    // If the index is the same as the length - 1, pop
+    if (index === this.length - 1) return this.pop();
+    // If the index is 0, shift
+    if (index === 0) return this.shift();
+    // Otherwise using the get method, access the node at the index - 1
+    let previousNode = this.get(index - 1);
+    // Set the next property in that node to be the next of the next node
+    let removed = previousNode.next;
+    previousNode.next = removed.next;
+    // Decrement the length
+    this.length--;
+    // Return the value of the node removed
+    return removed;
+  }
+
+  print() {
+    let arr = [];
+    let current = this.head;
+
+    while (current) {
+      arr.push(current.val);
+      current = current.next;
+    }
+    var str = arr.join(' --> ');
+
+    console.log(str)
+  }
 }
 
+module.exports = SinglyLinkedList;
+// module.exports = Node;
 
-let list = new SinglyLinkedList()
-console.log(list.push('Hello'))
-console.log(list.push('GoodBye'))
-console.log(list.push('<3'))
-console.log(list.push('!'))
+let list = new SinglyLinkedList();
 
-console.log('This is Singly linked list', list)
+// console.log(list.push('Hello'))
+// console.log(list.push('GoodBye'))
+// console.log(list.push('<3'))
+// console.log(list.push('!'))
 
-// console.log('Popped this: ', list.pop())
-console.log('Shifting node: ', list.shift())
-console.log('After popped: ', list)
-console.log('Unshift ', list.unshift('FIRST '))
-console.log('Get index ', list.get(0))
-console.log('Find something ', list.set(1, '%%%%%%%%'))
-console.log('After SET the value: ', list)
+// console.log('This is Singly linked list', list)
+
+// // console.log('Popped this: ', list.pop())
+// console.log('Shifting node: ', list.shift())
+// console.log('After popped: ', list)
+// console.log('Unshift ', list.unshift('FIRST '))
+// console.log('Get index ', list.get(0))
+// console.log('Find something ', list.set(1, '%%%%%%%%'))
+// console.log('After SET the value: ', list)
+
+// list.push(100)
+// list.push(201)
+// list.push(250)
+// list.push(350)
+
+
+// console.log(list.insert(5, 'FIst'))
+// console.log('After Insert : ', list)
+// console.log('Remove index: ', list.remove(11))
+
+// list.print()
